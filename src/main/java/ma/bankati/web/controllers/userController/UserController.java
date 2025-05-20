@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 import ma.bankati.dao.userDao.IUserDao;
-import ma.bankati.dao.userDao.UserDao;
+import ma.bankati.dao.userDao.jdbcDb.UserDaoJdbc;
 import ma.bankati.model.users.ERole;
 import ma.bankati.model.users.User;
 
@@ -16,7 +16,7 @@ public class UserController {
     private final IUserDao userDao;
 
     public UserController() {
-        this.userDao = new UserDao();
+        this.userDao = new UserDaoJdbc();
     }
 
     public void showAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

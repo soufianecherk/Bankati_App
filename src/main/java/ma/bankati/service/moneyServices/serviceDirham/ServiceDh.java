@@ -24,7 +24,7 @@ public class ServiceDh   implements IMoneyService {
 
        var data =  dao.fetchData();
 
-        var result =  data*10.0;
+        var result =  data*1;
         return  new MoneyData(result, Devise.Dh);
     }
 

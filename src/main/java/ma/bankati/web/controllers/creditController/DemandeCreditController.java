@@ -44,7 +44,7 @@ public class DemandeCreditController extends HttpServlet {
 
         // Utiliser la variable demandes déjà initialisée
         req.setAttribute("demandes", demandes);
-        req.getRequestDispatcher("/public/home.jsp").forward(req, resp);
+        req.getRequestDispatcher("/public/credit.jsp").forward(req, resp);
     }
 
     @Override

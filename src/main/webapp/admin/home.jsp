@@ -27,7 +27,7 @@
             <img src="<%= ctx %>/assets/img/logoBlue.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top me-2">
             <strong class="blue ml-1"><%=application.getAttribute("AppName")%></strong>
         </a>
-        
+
         <!-- Menu de navigation -->
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -43,7 +43,7 @@
                 </li>
             </ul>
         </div>
-        
+
         <!-- Infos session avec sous-menu -->
         <div class="dropdown d-flex align-items-center">
             <a class="btn btn-sm btn-light border dropdown-toggle text-success fw-bold"
@@ -60,7 +60,7 @@
                 </li>
             </ul>
         </div>
-    
+
     </div>
 </nav>
 
@@ -74,7 +74,7 @@
         <h5 class="mt-4 mb-3">
             Bienvenue à votre compte <span class="text-primary font-weight-bold"><%= appName %></span>
         </h5>
-        
+
         <ul class="list-unstyled">
             <li class="text-primary h5">
                 Solde de votre compte :

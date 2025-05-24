@@ -21,7 +21,7 @@ public class UserDaoJdbc implements IUserDao {
 
             stmt.setString(1, login);
             stmt.setString(2, password);
-            ResultSet rs = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery(); //ResultSet c'est quoi?
 
             if (rs.next()) {
                 return Optional.of(map(rs));

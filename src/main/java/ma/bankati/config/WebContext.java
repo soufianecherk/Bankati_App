@@ -27,6 +27,7 @@ public class WebContext implements ServletContextListener {
                 String moneyServClassName = properties.getProperty("moneyService");
                 String userDaoClassName = properties.getProperty("userDao");
                 String authServClassName = properties.getProperty("authService");
+                String creditDaoClassName = properties.getProperty("creditDao");
 
                 Class<?> cDataDao = Class.forName(dataDaoClassName);
                 IDao dataDao = (IDao) cDataDao.getDeclaredConstructor().newInstance();
@@ -41,12 +42,16 @@ public class WebContext implements ServletContextListener {
                 Class<?> cAuthService = Class.forName(authServClassName);
                 IAuthentificationService authService = (IAuthentificationService) cAuthService.getDeclaredConstructor(IUserDao.class).newInstance(userDao);
 
+                Class<?> cCreditDao = Class.forName(creditDaoClassName);
+                Object creditDao = cCreditDao.getDeclaredConstructor().newInstance();
+
 
                 // Enregistrement des beans aussi avec des noms explicites
                application.setAttribute("dataDao", dataDao);
                application.setAttribute("moneyService", moneyService);
                application.setAttribute("userDao", userDao);
                application.setAttribute("authService", authService);
+               application.setAttribute("creditDao", creditDao);
 
 
             } catch (Exception e) {

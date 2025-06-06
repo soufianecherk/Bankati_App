@@ -2,6 +2,7 @@ package ma.bankati.dao.creditDao.jdbcDb;
 
 import ma.bankati.config.DatabaseConnection;
 import ma.bankati.dao.creditDao.IDemandeCreditDao;
+import ma.bankati.dao.creditDao.jdbcDb.DemandeCreditDaoJdbc;
 import ma.bankati.model.credit.DemandeCredit;
 import ma.bankati.model.credit.EtatDemande;
 import ma.bankati.model.users.User;
@@ -15,7 +16,7 @@ public class DemandeCreditDaoJdbc implements IDemandeCreditDao {
 
     @Override
     public void ajouter(DemandeCredit demande) {
-        String sql = "INSERT INTO demande_credit (montant, date_demande, etat, user_id) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO demandes_credit (montant, date_demande, etat, user_id) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -38,7 +39,7 @@ public class DemandeCreditDaoJdbc implements IDemandeCreditDao {
 
     @Override
     public void supprimer(Long id) {
-        String sql = "DELETE FROM demande_credit WHERE id = ?";
+        String sql = "DELETE FROM demandes_credit WHERE id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setLong(1, id);
@@ -58,8 +59,8 @@ public class DemandeCreditDaoJdbc implements IDemandeCreditDao {
         updateEtat(id, EtatDemande.REFUSEE);
     }
 
-    private void updateEtat(Long id, EtatDemande etat) {
-        String sql = "UPDATE demande_credit SET etat = ? WHERE id = ?";
+    public void updateEtat(Long id, EtatDemande etat) {
+        String sql = "UPDATE demandes_credit SET etat = ? WHERE id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, etat.toString());
@@ -72,7 +73,7 @@ public class DemandeCreditDaoJdbc implements IDemandeCreditDao {
 
     @Override
     public DemandeCredit trouverParId(Long id) {
-        String sql = "SELECT * FROM demande_credit WHERE id = ?";
+        String sql = "SELECT * FROM demandes_credit WHERE id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -91,7 +92,7 @@ public class DemandeCreditDaoJdbc implements IDemandeCreditDao {
     @Override
     public List<DemandeCredit> trouverParUtilisateur(Long userId) {
         List<DemandeCredit> demandes = new ArrayList<>();
-        String sql = "SELECT * FROM demande_credit WHERE user_id = ?";
+        String sql = "SELECT * FROM demandes_credit WHERE user_id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -111,7 +112,7 @@ public class DemandeCreditDaoJdbc implements IDemandeCreditDao {
     @Override
     public List<DemandeCredit> listerToutes() {
         List<DemandeCredit> demandes = new ArrayList<>();
-        String sql = "SELECT * FROM demande_credit";
+        String sql = "SELECT * FROM demandes_credit";
         try (Connection conn = DatabaseConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {

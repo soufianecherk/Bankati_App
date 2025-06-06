@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import ma.bankati.dao.creditDao.IDemandeCreditDao;
-import ma.bankati.dao.creditDao.memoryDb.DemandeCreditDaoMemory;
+import ma.bankati.dao.creditDao.jdbcDb.DemandeCreditDaoJdbc;
 import ma.bankati.model.credit.DemandeCredit;
 import ma.bankati.model.users.User;
 
@@ -20,7 +20,7 @@ public class DemandeCreditController extends HttpServlet {
 
     @Override
     public void init() {
-        this.creditDao = new DemandeCreditDaoMemory(); // à remplacer par un Bean si besoin
+        this.creditDao = new DemandeCreditDaoJdbc(); // à remplacer par un Bean si besoin
     }
 
     @Override
